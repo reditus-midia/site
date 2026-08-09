@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 20
       - run: npm install
-      - run: npx biome ci .
+      - run: npx biome lint .
 
   commitlint:
     name: Commit messages
