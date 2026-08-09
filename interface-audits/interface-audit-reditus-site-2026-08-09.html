@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Revisão de Interface — Reditus Mídia (Issue #4)</title>
+<style>
+  :root{
+    --ink:#0a0a0c;--paper:#efede6;--acid:#d6ff28;--violet:#8e72ff;--pink:#ff4d7d;
+    --line:rgba(10,10,12,.14);--mono:"DM Mono","SFMono-Regular",Consolas,monospace;
+    --display:"Bricolage Grotesque",sans-serif;--sans:"Instrument Sans",sans-serif;
+    --bg:var(--paper);--fg:var(--ink);--card:#fff;--muted:rgba(10,10,12,.62);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#111114;--fg:var(--paper);--card:#1a1a1f;--line:rgba(239,237,230,.14);--muted:rgba(239,237,230,.62)}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  header.top{padding:56px 6vw 40px;border-bottom:1px solid var(--line)}
+  .eyebrow{font:600 .68rem var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin:0 0 14px}
+  h1{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:clamp(1.8rem,4vw,2.7rem);margin:0 0 14px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px 26px;font:500 .78rem var(--mono);color:var(--muted)}
+  .meta b{color:var(--fg);font-weight:600}
+  main{padding:44px 6vw 90px;max-width:1080px;margin:0 auto}
+  section.block{margin-bottom:64px}
+  h2{font-family:var(--display);font-size:1.3rem;letter-spacing:-.01em;margin:0 0 6px}
+  .block-sub{color:var(--muted);font-size:.88rem;margin:0 0 26px;max-width:64ch}
+  .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:28px 0 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px}
+  .stat b{display:block;font-family:var(--display);font-size:1.9rem;line-height:1}
+  .stat span{display:block;margin-top:6px;font:600 .64rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .stat.crit b{color:var(--pink)}
+  .stat.imp b{color:var(--violet)}
+  .stat.opp b{color:var(--muted)}
+
+  .finding{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 26px 24px;margin-bottom:22px}
+  .finding-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .badge{display:inline-flex;align-items:center;gap:6px;font:700 .62rem var(--mono);text-transform:uppercase;letter-spacing:.09em;padding:5px 11px;border-radius:999px;white-space:nowrap}
+  .badge.critical{background:rgba(255,77,125,.14);color:var(--pink)}
+  .badge.important{background:rgba(142,114,255,.16);color:var(--violet)}
+  .badge.opportunity{background:rgba(10,10,12,.08);color:var(--muted)}
+  .badge.credit{background:rgba(214,255,40,.28);color:#5b6b00}
+  @media (prefers-color-scheme: dark){ .badge.credit{color:#d6ff28} }
+  .finding h3{font-family:var(--display);font-size:1.1rem;margin:12px 0 6px;letter-spacing:-.01em}
+  .finding p{margin:0 0 10px;font-size:.92rem;color:var(--fg)}
+  .finding .why{color:var(--muted);font-size:.86rem}
+  .lens-tag{font:600 .64rem var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+  .conf-tag{font:600 .64rem var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:999px}
+  .conf-tag.verified{background:rgba(142,114,255,.12);color:var(--violet)}
+  .conf-tag.reported{background:rgba(10,10,12,.07);color:var(--muted)}
+  @media (prefers-color-scheme: dark){ .conf-tag.reported{background:rgba(239,237,230,.09)} }
+  code, .path{font-family:var(--mono);font-size:.82em;background:rgba(10,10,12,.06);padding:1px 6px;border-radius:5px}
+  @media (prefers-color-scheme: dark){ code, .path{background:rgba(239,237,230,.1)} }
+  a{color:var(--violet)}
+
+  .demo-wrap{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:620px){ .demo-wrap{grid-template-columns:1fr} }
+  .demo-card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--ink);color:var(--paper);position:relative}
+  .demo-card__label{position:absolute;top:10px;left:12px;font:700 .6rem var(--mono);text-transform:uppercase;letter-spacing:.09em;z-index:2;opacity:.65}
+  .demo-card__stage{min-height:140px;display:flex;align-items:center;justify-content:center;position:relative;padding:20px}
+  .demo-card__cap{padding:10px 14px;font:500 .7rem var(--mono);border-top:1px solid rgba(239,237,230,.14);color:rgba(239,237,230,.7)}
+
+  /* demo: mojibake before/after */
+  .charset-sample{font-family:var(--display);font-size:1.4rem;text-align:center}
+  .charset-before .charset-sample{color:#ff8fa8}
+  .charset-after .charset-sample{color:var(--acid)}
+
+  /* demo: topbar overlap */
+  .overlap-stage{width:100%;height:120px;position:relative;background:#cfe94a}
+  .overlap-nav{position:absolute;top:14px;left:0;right:0;text-align:center;font:700 .7rem var(--mono);letter-spacing:.08em;color:#fff;mix-blend-mode:difference}
+  .overlap-body{position:absolute;top:6px;left:8px;right:8px;font:600 .82rem var(--sans);color:#0a0a0c;line-height:1.3}
+  .overlap-fix-bg{position:absolute;top:0;left:0;right:0;height:44px;background:rgba(10,10,12,.62);backdrop-filter:blur(6px)}
+  .overlap-fix-nav{position:absolute;top:14px;left:0;right:0;text-align:center;font:700 .7rem var(--mono);letter-spacing:.08em;color:#fff;z-index:2}
+  .overlap-fix-body{position:absolute;top:52px;left:8px;right:8px;font:600 .82rem var(--sans);color:#0a0a0c;line-height:1.3}
+
+  /* demo: catalog richness gap */
+  .cat-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .cat-chip{width:64px;height:44px;border-radius:6px;display:flex;align-items:center;justify-content:center;font:700 .8rem var(--mono)}
+  .cat-chip.bare{background:rgba(239,237,230,.08);color:rgba(239,237,230,.4)}
+  .cat-chip.rich{background:linear-gradient(135deg,var(--violet),var(--pink));color:#fff}
+
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
+  .verdict ul{margin:14px 0 0;padding-left:20px}
+  .verdict li{margin-bottom:8px;font-size:.9rem}
+  .verdict li b{font-weight:700}
+  footer.end{padding:36px 6vw 60px;color:var(--muted);font:500 .76rem var(--mono);border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <p class="eyebrow">Revisão final de interface · product design sênior · Issue #4</p>
+  <h1>Reditus Mídia — revisão de interface</h1>
+  <div class="meta">
+    <span><b>Escopo:</b> index.html e midia-kit-page/index.html — desktop e mobile</span>
+    <span><b>Data:</b> 2026-08-09</span>
+    <span><b>Issue:</b> #4</span>
+    <span><b>Método:</b> captura de tela seção-a-seção (Playwright) em 4 combinações página×viewport, revisão cruzada + verificação direta</span>
+  </div>
+  <div class="summary-grid">
+    <div class="stat crit"><b>1</b><span>Crítico · corrigido</span></div>
+    <div class="stat imp"><b>2</b><span>Importante · issue aberta</span></div>
+    <div class="stat opp"><b>4</b><span>Oportunidade</span></div>
+  </div>
+</header>
+
+<main>
+
+  <section class="block">
+    <h2>Contexto</h2>
+    <p class="block-sub">
+      Pass final de revisão visual pedido na Issue #4: "nada deve parecer brusco, travado, genérico ou amador".
+      Em vez de depender só de leitura de código, o site foi servido localmente e fotografado seção a seção em
+      desktop (1440px) e mobile (390px), nas duas páginas do site. Quatro revisões independentes (uma por
+      página×viewport) levantaram os achados abaixo; os mais severos foram re-verificados diretamente, olhando os
+      próprios pixels, antes de virar issue ou PR — inclusive um caso em que duas revisões diferentes descreveram
+      sintomas aparentemente distintos ("badge quebrado", texto acentuado ilegível) que eram, na verdade, a mesma
+      causa raiz.
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>Achados críticos e importantes</h2>
+    <p class="block-sub">Os três achados abaixo foram confirmados por inspeção direta de pixel, não só por relato de revisão automatizada.</p>
+
+    <!-- FINDING 1 — CRITICAL, FIXED -->
+    <div class="finding">
+      <div class="finding-head">
+        <span class="badge critical">Crítico · corrigido nesta issue</span>
+        <span class="conf-tag verified">Verificado diretamente</span>
+      </div>
+      <h3>Bug de encoding fazia todo texto acentuado renderizar como mojibake</h3>
+      <p>
+        Em ambas as páginas, o <code>&lt;meta charset="utf-8"&gt;</code> ficava depois dos scripts de analytics
+        (gtag, Meta Pixel) — no byte 1047 do arquivo. Navegadores só varrem os primeiros 1024 bytes do HTML em
+        busca dessa tag antes de começar a renderizar; como o servidor também não envia <code>charset</code> no
+        header HTTP, o Chromium (e qualquer navegador com o mesmo comportamento padrão da spec) caía num encoding
+        errado. Resultado: "atenção" virava "atenÃ§Ã£o", e alguns labels curtos em maiúsculas chegavam a renderizar
+        como glifo "tofu" (quadrado vazio) — o que uma das quatro revisões descreveu, à primeira vista, como um
+        badge de debug estranho ("HOP"/"RI") sobre o card do formato Áudio. Confirmei que era a mesma causa raiz
+        em vez de tratar como um bug separado.
+      </p>
+      <p class="why">Por que importa: isso não é um detalhe de polish — é o site inteiro (título, subtítulos, CTAs,
+      descrições de formato) ilegível ou com aparência quebrada para qualquer visitante, em português, na primeira
+      dobra da página.</p>
+      <div class="demo-wrap">
+        <div class="demo-card charset-before">
+          <span class="demo-card__label">Antes</span>
+          <div class="demo-card__stage"><span class="charset-sample">atenÃ§Ã£o</span></div>
+          <div class="demo-card__cap">meta charset no byte 1047 (fora da janela de 1024 bytes)</div>
+        </div>
+        <div class="demo-card charset-after">
+          <span class="demo-card__label">Depois</span>
+          <div class="demo-card__stage"><span class="charset-sample">atenção</span></div>
+          <div class="demo-card__cap">meta charset como 1ª linha de &lt;head&gt;</div>
+        </div>
+      </div>
+      <p class="why" style="margin-top:14px">
+        Corrigido e mesclado via <a href="https://github.com/reditus-midia/site/pull/10">PR #10</a> — mudança
+        pura de reposicionamento da tag, sem risco funcional, validada localmente antes/depois e com CI verde.
+      </p>
+    </div>
+
+    <!-- FINDING 2 — IMPORTANT, OPEN ISSUE -->
+    <div class="finding">
+      <div class="finding-head">
+        <span class="badge important">Importante · issue aberta</span>
+        <span class="conf-tag verified">Verificado diretamente</span>
+      </div>
+      <h3>Topbar fixo sem fundo colide com o texto da página ao rolar</h3>
+      <p>
+        <code>.topbar</code> é <code>position:fixed</code>, usa <code>mix-blend-mode:difference</code> e não tem
+        <code>background</code>. A ideia funciona enquanto só o header está ali, mas como ele não é opaco, qualquer
+        heading ou parágrafo que role até y=0 fica visível <em>ao mesmo tempo</em> que o logo/nav do header — as
+        duas camadas de texto se sobrepõem e nenhuma fica legível. Confirmado em screenshot: na seção manifesto
+        (fundo verde-ácido), o parágrafo do texto fica literalmente por cima de "FORMATOS RESULTADO MANIFESTO" e
+        do logo "reditus".
+      </p>
+      <p class="why">Por que virou issue em vez de PR direto: existem pelo menos duas soluções razoáveis (fundo
+      sólido/blur constante, ou lógica de cor por seção) com trade-offs visuais diferentes — é decisão de design,
+      não ajuste aditivo.</p>
+      <div class="demo-wrap">
+        <div class="demo-card" style="background:transparent;border-color:var(--line)">
+          <span class="demo-card__label" style="color:var(--fg);opacity:.5">Atual</span>
+          <div class="overlap-stage">
+            <div class="overlap-body">...a Reditus nasce pra provar que anúncio pode ser esperado, não invasivo...</div>
+            <div class="overlap-nav">reditus &nbsp;&nbsp; FORMATOS RESULTADO MANIFESTO</div>
+          </div>
+          <div class="demo-card__cap" style="color:var(--muted)">texto do parágrafo e nav sobrepostos, ambos ilegíveis</div>
+        </div>
+        <div class="demo-card" style="background:transparent;border-color:var(--line)">
+          <span class="demo-card__label" style="color:var(--fg);opacity:.5">Sugestão</span>
+          <div class="overlap-stage">
+            <div class="overlap-fix-bg"></div>
+            <div class="overlap-fix-nav">reditus &nbsp;&nbsp; FORMATOS RESULTADO MANIFESTO</div>
+            <div class="overlap-fix-body">...a Reditus nasce pra provar que anúncio pode ser esperado...</div>
+          </div>
+          <div class="demo-card__cap" style="color:var(--muted)">fundo translúcido + blur, cor do header fixa</div>
+        </div>
+      </div>
+      <p class="why" style="margin-top:14px">
+        Detalhado em <a href="https://github.com/reditus-midia/site/issues/11">Issue #11</a>.
+      </p>
+    </div>
+
+    <!-- FINDING 3 — IMPORTANT, OPEN ISSUE -->
+    <div class="finding">
+      <div class="finding-head">
+        <span class="badge important">Importante · issue aberta</span>
+        <span class="conf-tag verified">Verificado diretamente</span>
+      </div>
+      <h3>Nav principal some no mobile sem nenhum substituto</h3>
+      <p>
+        <code>@media(max-width:760px){.topbar nav{display:none}}</code> remove o <code>&lt;nav&gt;</code> com os
+        links formatos/resultado/manifesto — sem hambúrguer, drawer ou qualquer outro elemento no lugar. No mobile,
+        o topbar mostra só o logo e o CTA "falar com a gente"; não existe forma de pular direto para uma seção,
+        só rolagem manual longa. Esse risco já tinha sido anotado durante a auditoria de motion (PR #9) e ficou
+        marcado explicitamente para ser resolvido aqui.
+      </p>
+      <p class="why">Por que virou issue em vez de PR direto: um menu mobile decente é um componente novo com
+      estado em JS (abrir/fechar, foco, teclado, <code>prefers-reduced-motion</code> na transição) — mais que um
+      ajuste aditivo de CSS.</p>
+      <p class="why" style="margin-top:4px">
+        Detalhado em <a href="https://github.com/reditus-midia/site/issues/12">Issue #12</a>.
+      </p>
+    </div>
+
+  </section>
+
+  <section class="block">
+    <h2>Oportunidades de polish</h2>
+    <p class="block-sub">
+      Achados de menor severidade — não bloqueiam nada, mas contribuem para a percepção de "amador" que a Issue #4
+      pede para eliminar. Marcados com o nível de confiança: os dois primeiros eu conferi pessoalmente nos
+      screenshots; os últimos vieram das revisões automatizadas e ainda não foram re-checados pixel a pixel — vale
+      uma olhada visual antes de agir.
+    </p>
+
+    <div class="finding">
+      <div class="finding-head">
+        <span class="badge opportunity">Oportunidade</span>
+        <span class="conf-tag verified">Verificado diretamente</span>
+      </div>
+      <h3>Catálogo de formatos tem dois níveis de acabamento visual bem diferentes</h3>
+      <p>
+        Na lista "OS FORMATOS" da home, os cards demonstrativos de <code>Velocity</code>, <code>Desktop Skin</code>
+        e <code>Mobile Skin</code> (04–06) têm composições ilustradas completas — cores de marca, layout de tela
+        simulado, mockup de celular. Já <code>Pause Ads</code>, <code>In-Video Squeezeback</code>,
+        <code>In-Video Spark</code>, <code>In-Article</code>, <code>Hang Time</code> e <code>Outstream</code> (01,
+        02, 03, 07, 08, 10) são só um retângulo escuro com um ícone de play ou uma barra de texto genérica. O card
+        <code>In-Screen</code> (09) é o mais vazio de todos: só o "R" gigante da marca, sem nenhuma demonstração do
+        formato em uso.
+      </p>
+      <div class="cat-row" style="margin-top:14px">
+        <div class="cat-chip bare">▶</div>
+        <div class="cat-chip bare">▬▬</div>
+        <div class="cat-chip bare">▶</div>
+        <div class="cat-chip rich">R</div>
+        <div class="cat-chip rich">◧</div>
+        <div class="cat-chip rich">▮</div>
+      </div>
+      <p class="why" style="margin-top:14px">10 formatos, dois padrões visuais diferentes lado a lado — os 6 "bare"
+      chamam menos atenção e reforçam a sensação de catálogo incompleto justamente onde o produto tenta parecer
+      mais robusto (10 formatos de anúncio).</p>
+    </div>
+
+    <div class="finding">
+      <div class="finding-head">
+        <span class="badge opportunity">Oportunidade</span>
+        <span class="conf-tag verified">Verificado diretamente</span>
+      </div>
+      <h3>Seções de formato do mídia kit (Áudio, DOOH) são só texto, sem nenhum elemento visual</h3>
+      <p>
+        Em <code>midia-kit-page/index.html</code>, as seções "Áudio" e "DOOH" (e provavelmente os demais formatos
+        na mesma página) são compostas só de título, subtítulo e duas colunas de texto ("Onde sua marca
+        toca"/"aparece" e "Como funciona") — nenhuma imagem, ícone customizado ou demonstração visual, destoando
+        do catálogo ilustrado da home que usa cards com mockups.
+      </p>
+      <p class="why">Por que importa: o mídia kit é justamente a página que existe pra convencer um comprador de
+      mídia — menos apoio visual ali do que na home é o oposto do que se esperaria.</p>
+    </div>
+
+    <div class="finding">
+      <div class="finding-head">
+        <span class="badge opportunity">Oportunidade</span>
+        <span class="conf-tag reported">Reportado, não re-verificado</span>
+      </div>
+      <h3>Possível reaproveitamento de uma mesma ilustração entre dois formatos diferentes</h3>
+      <p>
+        Uma das revisões apontou que dois cards de formato distintos parecem compartilhar a mesma peça ilustrativa
+        de base, o que passa a sensação de que os formatos são menos diferenciados do que o texto ao lado sugere.
+        Não confirmei pessoalmente qual par de cards é — vale conferir visualmente lado a lado antes de decidir se
+        é intencional (reaproveitamento proposital de ativo de marca) ou descuido.
+      </p>
+    </div>
+
+    <div class="finding">
+      <div class="finding-head">
+        <span class="badge opportunity">Oportunidade</span>
+        <span class="conf-tag reported">Reportado, não re-verificado</span>
+      </div>
+      <h3>Sublinhado dos CTAs de texto e contraste dos números de índice</h3>
+      <p>
+        Duas observações menores de mais de uma revisão: (1) o estilo de sublinhado usado nos links/CTAs de texto
+        (ex. "ver o mídia kit") parece inconsistente entre seções; (2) os números de índice da lista de formatos
+        (<code>01</code>–<code>10</code>) usam um cinza claro que, em alguns dos fundos usados, fica com contraste
+        baixo. Ambos plausíveis pelo que vi nos screenshots gerais, mas não medi contraste nem comparei todas as
+        ocorrências de CTA individualmente — recomendo um passe visual dedicado antes de abrir issue ou PR.
+      </p>
+    </div>
+
+  </section>
+
+  <section class="block verdict">
+    <h2>Veredito e próximos passos</h2>
+    <p>
+      O achado crítico (encoding) explicava a maior parte dos sintomas "estranhos" relatados pelas quatro revisões
+      independentes e já está corrigido e mesclado. Os outros dois achados que travam ou escondem interação
+      (topbar/scroll, nav mobile) pedem decisão de design antes de mexer em CSS/JS, então viraram issues de
+      acompanhamento em vez de PR direto — mesmo critério já usado na auditoria de motion (Issue #3 → Issue #8).
+      Os itens de polish ficam registrados aqui, sem issue individual por enquanto: são mudanças de acabamento, não
+      bugs, e vale agrupá-los numa passada de design única em vez de abrir uma issue por detalhe.
+    </p>
+    <ul>
+      <li><b>Corrigido:</b> encoding/mojibake em todo o site — <a href="https://github.com/reditus-midia/site/pull/10">PR #10</a>, mesclado.</li>
+      <li><b>Issue aberta (Correção):</b> topbar fixo sem fundo colidindo com texto ao rolar — <a href="https://github.com/reditus-midia/site/issues/11">Issue #11</a>.</li>
+      <li><b>Issue aberta (Melhoria):</b> nav mobile sem substituto ao <code>display:none</code> — <a href="https://github.com/reditus-midia/site/issues/12">Issue #12</a>.</li>
+      <li><b>Registrado, sem issue própria:</b> inconsistência de acabamento no catálogo de formatos e nas seções do mídia kit (verificado); possível ilustração reaproveitada, sublinhado de CTA e contraste dos números de índice (reportado, não re-verificado individualmente).</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="end">
+  Revisão final de interface · product design sênior · Reditus Mídia · Issue #4
+</footer>
+
+</body>
+</html>
