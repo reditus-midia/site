@@ -2,31 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XRQHS95DXH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XRQHS95DXH');
-  </script>
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '2880615352336773');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=2880615352336773&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
+<!-- GA4 e Meta Pixel: carregados por consent.js somente apos consentimento de cookies (LGPD) -->
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#0a0a0c" />
   <title>Mídia Kit — Reditus Mídia</title>
@@ -396,5 +372,18 @@ m705 -809 c55 -5 152 -14 215 -20 63 -5 174 -23 245 -39 72 -17 174 -37 228
       });
     });
   </script>
+<div id="cookie-consent" class="cookie-consent" hidden>
+<div class="cookie-consent__box">
+<p class="cookie-consent__text">Usamos cookies para medir audiencia (Google Analytics) e otimizar campanhas (Meta Pixel). Essas ferramentas so sao ativadas com sua permissao. <a href="mailto:contato@reditusmidia.com.br">Fale com a gente</a> se tiver duvidas.</p>
+<div class="cookie-consent__actions">
+<button type="button" id="cc-reject" class="cookie-consent__btn cookie-consent__btn--ghost">Somente essenciais</button>
+<button type="button" id="cc-accept" class="cookie-consent__btn cookie-consent__btn--primary">Aceitar cookies</button>
+</div>
+</div>
+</div>
+<button type="button" id="cookie-manage" class="cookie-manage" hidden aria-label="Gerenciar preferencias de cookies">
+<svg class="ico" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4.5"/><path d="M6 4v2.5l1.6 1"/></svg>
+</button>
+<script src="/consent.js" defer></script>
 </body>
 </html>
