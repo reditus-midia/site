@@ -879,3 +879,26 @@ main .scene{contain-intrinsic-size:auto 220vh}
 .text-link:hover {
      opacity: 0.62;
 }
+/* Camada: cookie-consent.css */
+.cookie-consent{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;justify-content:center;padding:0 4vw 4vw;pointer-events:none}
+.cookie-consent[hidden]{display:none}
+.cookie-consent__box{pointer-events:auto;max-width:640px;width:100%;background:var(--ink);color:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 24px;display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;justify-content:space-between;box-shadow:0 20px 60px rgba(0,0,0,.45);transform:translateY(24px);opacity:0;transition:transform .4s cubic-bezier(.33,1,.68,1),opacity .4s ease}
+.cookie-consent.cc-show .cookie-consent__box{transform:none;opacity:1}
+.cookie-consent__text{flex:1 1 320px;margin:0;font:400 .82rem/1.45 var(--sans);color:rgba(239,237,230,.82)}
+.cookie-consent__text a{color:var(--acid)}
+.cookie-consent__actions{display:flex;gap:10px;flex-wrap:wrap}
+.cookie-consent__btn{font:600 .68rem var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:12px 18px;border-radius:999px;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+.cookie-consent__btn--primary{background:var(--acid);color:#0a0a0c}
+.cookie-consent__btn--ghost{background:transparent;color:var(--paper);border-color:var(--line)}
+.cookie-consent__btn--ghost:hover{border-color:var(--paper)}
+.cookie-consent__btn--primary:hover{opacity:.86}
+.cookie-manage{position:fixed;left:20px;bottom:20px;z-index:55;width:38px;height:38px;border-radius:50%;background:var(--ink);border:1px solid var(--line);color:var(--paper);display:grid;place-items:center;cursor:pointer;padding:0}
+.cookie-manage svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.2}
+.cookie-manage[hidden]{display:none}
+@media(max-width:760px){
+.cookie-consent{padding:0 4vw 20px}
+.cookie-consent__box{padding:18px 18px;border-radius:14px}
+.cookie-consent__actions{width:100%}
+.cookie-consent__btn{flex:1;text-align:center}
+.cookie-manage{left:14px;bottom:14px}
+}
