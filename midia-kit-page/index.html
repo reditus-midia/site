@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XRQHS95DXH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XRQHS95DXH');
+  </script>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2880615352336773');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2880615352336773&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0a0a0c" />
+  <title>Mídia Kit — Reditus Mídia</title>
+  <meta name="description" content="Mídia kit da Reditus: Rich Media, áudio e DOOH com retorno mensurável." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    /* ===== página do mídia kit ===== */
+    .mk-wrap { max-width: 1160px; margin: 0 auto; padding: 0 6vw; }
+    .mk-hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; position: relative; }
+    .mk-hero h1 { font-size: clamp(4rem, 9vw, 9.5rem); }
+    .mk-hero h1 em { color: var(--acid); }
+    .mk-sub { font: 400 1.05rem/1.4 var(--sans); color: rgba(239,237,230,.72); max-width: 480px; margin-top: 30px; }
+    .mk-sec { padding: 12vh 0 6vh; border-top: 1px solid var(--line); }
+    .mk-sec > .kicker { display: block; }
+    .mk-sec h2 { font: 600 clamp(2.6rem, 5.5vw, 4.6rem)/0.9 var(--display); letter-spacing: -0.05em; margin: 20px 0 18px; }
+    .mk-lead { font: 400 1.05rem/1.45 var(--sans); color: rgba(239,237,230,.7); max-width: 560px; }
+
+    /* frentes */
+    .mk-frow { border-top: 1px solid var(--line); padding: 34px 0; display: grid; grid-template-columns: 1fr 1.1fr; gap: 30px; align-items: center; }
+    .mk-frow:last-of-type { border-bottom: 1px solid var(--line); }
+    .mk-frow small { font: 500 .68rem var(--mono); letter-spacing: .26em; color: rgba(239,237,230,.5); display: block; margin-bottom: 10px; text-transform: uppercase; }
+    .mk-frow b { font: 700 clamp(2.4rem,4.5vw,4rem)/0.9 var(--display); letter-spacing: -0.04em; }
+    .mk-frow p { font: 400 1rem/1.45 var(--sans); color: rgba(239,237,230,.72); }
+    .mk-frow .ml { font: 500 .68rem var(--mono); letter-spacing: .14em; text-transform: uppercase; margin-top: 12px; }
+
+    /* formatos grid */
+    .mk-fmts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 30px; }
+    .mk-fmt { border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; transition: .3s; cursor: default; }
+    .mk-fmt:hover { background: rgba(214,255,40,.07); border-color: rgba(214,255,40,.4); }
+    .mk-fmt span { font: 400 .68rem var(--mono); color: var(--acid); letter-spacing: .12em; }
+    .mk-fmt b { display: block; font: 600 1.35rem/1 var(--display); letter-spacing: -0.03em; margin: 6px 0; }
+    .mk-fmt p { font: 400 .86rem/1.4 var(--sans); color: rgba(239,237,230,.65); }
+
+    /* listas A/B/C */
+    .mk-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 26px; }
+    .mk-item { border-bottom: 1px solid var(--line); padding: 18px 0; }
+    .mk-item:last-child { border-bottom: 0; }
+    .mk-item h3 { font: 600 1.4rem/1 var(--display); letter-spacing: -0.03em; }
+    .mk-item h3 em { font-size: .95rem; }
+    .mk-item p { font: 400 .88rem/1.4 var(--sans); color: rgba(239,237,230,.62); margin-top: 6px; }
+    .mk-colhead { font: 500 .68rem var(--mono); letter-spacing: .22em; margin-bottom: 6px; text-transform: uppercase; }
+
+    /* stats contadores */
+    .mk-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 34px; }
+    .mk-stat { border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+    .mk-stat b { font: 700 clamp(2.2rem,4vw,3.4rem)/1 var(--display); letter-spacing: -0.04em; display: block; }
+    .mk-stat span { font: 500 .64rem var(--mono); letter-spacing: .16em; color: rgba(239,237,230,.55); display: block; margin-top: 8px; text-transform: uppercase; }
+
+    /* processo */
+    .mk-steps { counter-reset: step; display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 30px; }
+    .mk-step { border: 1px solid var(--line); border-radius: 14px; padding: 22px; position: relative; }
+    .mk-step i { font: 400 .68rem var(--mono); color: var(--violet); letter-spacing: .12em; font-style: normal; }
+    .mk-step b { display: block; font: 600 1.25rem/1 var(--display); letter-spacing: -0.03em; margin: 8px 0; }
+    .mk-step p { font: 400 .84rem/1.4 var(--sans); color: rgba(239,237,230,.62); }
+
+    /* manifesto section reuse acid */
+    .mk-manif { background: var(--acid); color: #101010; margin: 10vh calc(-50vw + 50%) 0; padding: 12vh calc(50vw - 50%) 10vh; }
+    .mk-manif .kicker { color: #101010; opacity: .6; }
+    .mk-manif h2 { font: 600 clamp(2.4rem,5vw,4.2rem)/0.92 var(--display); letter-spacing: -0.05em; margin: 18px 0 26px; }
+    .mk-manif h2 em { color: var(--violet); }
+
+    /* contato */
+    .mk-cta { text-align: center; padding: 14vh 0 10vh; }
+    .mk-cta .eye-anim { width: 74px; margin: 0 auto 26px; color: var(--paper); }
+    .mk-cta h2 { font: 600 clamp(2.6rem,6vw,5rem)/0.9 var(--display); letter-spacing: -0.05em; }
+    .mk-cta h2 em { color: var(--violet); }
+    .mk-pill { display: inline-block; font: 600 1.05rem var(--display); background: var(--acid); color: var(--ink); border-radius: 999px; padding: 16px 38px; text-decoration: none; margin-top: 34px; letter-spacing: -0.02em; }
+    .mk-foot { border-top: 1px solid var(--line); padding: 20px 0 40px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font: 500 .6rem var(--mono); letter-spacing: .16em; text-transform: uppercase; color: rgba(239,237,230,.45); }
+    .mk-foot a { color: inherit; }
+
+
+    /* demos animados dos tipos de mídia */
+    .mk-demo { margin-top: 16px; }
+    .mk-demo .mini { width: 100%; max-width: 300px; height: 110px; border-radius: 10px; }
+    .demo-skin { width: 240px; height: 84px; background: #17171d; border-radius: 12px; position: relative; overflow: hidden; border: 1px solid var(--line); margin-top: 20px; }
+    .demo-skin i { position: absolute; top: 8px; bottom: 8px; width: 42px; border-radius: 6px; background: var(--acid); }
+    .demo-skin .l { left: 8px; animation: mkskinl 2.4s ease-in-out infinite alternate; }
+    .demo-skin .r { right: 8px; animation: mkskinr 2.4s ease-in-out infinite alternate; }
+    .demo-skin .c { position: absolute; left: 58px; right: 58px; top: 8px; bottom: 8px; border-radius: 6px; background: #232330; }
+    @keyframes mkskinl { from { transform: translateX(-64px); } 40%, to { transform: none; } }
+    @keyframes mkskinr { from { transform: translateX(64px); } 40%, to { transform: none; } }
+    .demo-eq { display: flex; align-items: flex-end; gap: 7px; height: 84px; margin-top: 20px; }
+    .demo-eq i { width: 15px; border-radius: 4px; background: var(--violet); height: calc(var(--h) * 100%); transform-origin: bottom; animation: mkeq 1.1s ease-in-out var(--d) infinite alternate; }
+    @keyframes mkeq { from { transform: scaleY(1); } to { transform: scaleY(.35); } }
+    .demo-totem { width: 86px; height: 100px; display: flex; flex-direction: column; align-items: center; margin-top: 20px; }
+    .demo-totem .scr { width: 74px; height: 66px; border-radius: 8px; background: var(--pink); animation: mkscr 2.2s ease-in-out infinite; }
+    .demo-totem .post { width: 6px; flex: 1; background: #2a2a36; }
+    .demo-totem .base { width: 40px; height: 6px; border-radius: 3px; background: #2a2a36; }
+    @keyframes mkscr { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+
+    @media (max-width: 760px) {
+      .mk-cols > div:not(:last-child) .mk-item:last-child { border-bottom: 1px solid var(--line); }
+    }
+
+    @media (max-width: 760px) {
+      .mk-foot { flex-direction: column; align-items: stretch; gap: 0; padding-top: 0; border-top: 0; }
+      .mk-foot > * { display: block; padding: 15px 0; border-top: 1px solid var(--line); font-size: 0.6rem; }
+      .mk-foot a[href="/"] { order: 1; }
+      .mk-foot a[href*="instagram"] { order: 2; }
+      .mk-foot span:first-child { order: 3; opacity: 0.75; }
+      .mk-foot span:last-child { order: 4; opacity: 0.6; font-size: 0.52rem; }
+    }
+    .topbar { position: fixed; }
+    @media (max-width: 760px) {
+      .mk-frow, .mk-cols { grid-template-columns: 1fr; gap: 12px; }
+      .mk-fmts { grid-template-columns: 1fr; }
+      .mk-steps { grid-template-columns: 1fr 1fr; }
+      .mk-stats { grid-template-columns: 1fr; }
+      .mk-hero { min-height: 80vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Reditus, voltar ao site"><svg class="eye-anim eye-brand" viewBox="0 0 1053.035908 639.451227" aria-hidden="true"><g class="blinker"><g transform="translate(-37.215166,671.627944) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"><path d="M7110 6710 c-714 -43 -1498 -173 -2180 -362 -575 -159 -1279 -427
+-1566 -595 -27 -16 -80 -42 -119 -57 -38 -15 -110 -50 -159 -78 -48 -28 -119
+-66 -157 -84 -105 -51 -399 -230 -575 -350 -1002 -681 -1657 -1475 -1908
+-2314 -415 -1386 956 -2507 3114 -2547 3271 -60 6608 1690 7264 3810 201 649
+9 1323 -496 1743 -575 477 -1183 709 -2158 820 -159 19 -833 27 -1060 14z
+m705 -809 c55 -5 152 -14 215 -20 63 -5 174 -23 245 -39 72 -17 174 -37 228
+-46 54 -9 132 -27 175 -40 42 -13 110 -34 151 -46 41 -12 118 -43 170 -69 53
+-27 127 -58 165 -71 37 -12 97 -42 132 -66 35 -24 90 -57 122 -73 156 -79 361
+-258 454 -397 304 -455 272 -835 -123 -1469 -72 -115 -95 -146 -244 -314 -49
+-57 -115 -134 -145 -171 -30 -38 -80 -88 -110 -112 -30 -23 -102 -87 -160
+-141 -111 -105 -491 -395 -594 -455 -171 -99 -307 -180 -358 -214 -99 -66
+-586 -301 -666 -322 -40 -10 -126 -44 -191 -76 -65 -32 -153 -68 -197 -80 -43
+-12 -99 -30 -123 -41 -24 -10 -72 -26 -105 -35 -34 -8 -95 -28 -136 -44 -140
+-54 -438 -136 -715 -196 -60 -14 -157 -36 -215 -49 -58 -14 -146 -30 -197 -36
+-50 -5 -122 -19 -160 -30 -37 -11 -122 -24 -188 -30 -65 -5 -138 -14 -162 -19
+-23 -6 -102 -14 -175 -20 -73 -5 -158 -14 -188 -20 -183 -33 -959 -47 -1235
+-22 -77 7 -187 17 -245 22 -58 5 -175 25 -260 44 -85 19 -180 37 -210 41 -102
+14 -387 103 -488 154 -53 26 -128 58 -166 71 -37 12 -97 42 -132 66 -35 24
+-90 57 -122 73 -358 181 -637 580 -658 945 -20 321 207 823 545 1206 75 85
+157 181 181 212 24 31 67 74 94 95 28 21 97 82 153 135 122 116 534 427 659
+496 49 27 152 89 229 137 178 112 648 346 730 364 33 7 125 43 205 81 80 37
+170 73 200 80 30 7 84 25 120 40 36 14 88 32 115 39 28 6 84 25 125 40 146 56
+439 137 715 197 61 14 157 36 215 49 58 14 145 30 193 35 48 6 131 22 184 35
+52 14 121 25 152 25 31 0 112 9 181 20 69 11 150 20 180 20 30 0 114 9 185 20
+72 11 171 20 220 21 50 1 117 5 150 9 82 11 756 4 880 -9z"/><g class="pupila"><path d="M5810 4474 c-1000 -151 -1628 -1399 -936 -1862 739 -494 1993 484
+1765 1376 -82 323 -455 542 -829 486z"/></g></g></g></svg><span>reditus</span></a>
+    <a class="small-cta" href="/">voltar ao site <b><svg class="ico" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></b></a>
+  </header>
+
+  <main class="mk-wrap">
+    <!-- HERO -->
+    <section class="mk-hero">
+      <p class="kicker reveal">MÍDIA KIT <span>·</span> 2026</p>
+      <h1 class="reveal">a mídia<br>que <em>volta.</em></h1>
+      <p class="mk-sub reveal">Rich Media, áudio e DOOH para marcas que querem entrar em cena — e saber o que voltou dela. Este é o kit completo: frentes, formatos, mensuração e como trabalhar com a gente.</p>
+      <p class="scroll-note">role para explorar <i><svg class="ico" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1.5v9M2.5 7 6 10.5 9.5 7"/></svg></i></p>
+    </section>
+
+    <!-- FRENTES -->
+    <section class="mk-sec">
+      <p class="kicker reveal">TRÊS FRENTES <span>·</span> UM COMPROMISSO</p>
+      <h2 class="reveal">alto impacto,<br><em style="color:var(--acid)">zero tradicional.</em></h2>
+      <div class="reveal">
+        <div class="mk-frow">
+          <div><small>Formatos que interagem</small><b style="color:var(--acid)">Rich Media</b><div class="demo-skin"><div class="c"></div><i class="l"></i><i class="r"></i></div></div>
+          <div><p>10 formatos de alto impacto — do skin takeover ao in-video spark. Interage com o usuário, não é banner estático.</p><p class="ml" style="color:var(--acid)">PAUSE ADS · SKINS · IN-VIDEO · OUTSTREAM +6</p></div>
+        </div>
+        <div class="mk-frow">
+          <div><small>Atenção exclusiva</small><b style="color:var(--violet)">Áudio</b><div class="demo-eq"><i style="--h:.55;--d:0s"></i><i style="--h:.9;--d:.12s"></i><i style="--h:.7;--d:.24s"></i><i style="--h:1;--d:.06s"></i><i style="--h:.6;--d:.3s"></i><i style="--h:.85;--d:.18s"></i><i style="--h:.5;--d:.36s"></i></div></div>
+          <div><p>Presença em momentos de escuta sem concorrência visual, com inserção dinâmica e criativo contextual.</p><p class="ml" style="color:var(--violet)">SPOTIFY · DEEZER · PODCASTS · RÁDIO DIGITAL</p></div>
+        </div>
+        <div class="mk-frow">
+          <div><small>As maiores telas do Brasil</small><b style="color:var(--pink)">DOOH</b><div class="demo-totem"><div class="scr"></div><div class="post"></div><div class="base"></div></div></div>
+          <div><p>Telas digitais nas maiores circulações do país — metrô, shopping, aeroporto, Uber. Compra programática.</p><p class="ml" style="color:var(--pink)">METRÔ · SHOPPING · AEROPORTO · UBER</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RICH MEDIA -->
+    <section class="mk-sec">
+      <p class="kicker reveal">FORMATO 01 <span>·</span> FORMATOS QUE INTERAGEM</p>
+      <h2 class="reveal">Rich Media<em style="color:var(--acid)">.</em></h2>
+      <p class="mk-lead reveal">Cada espaço pode ser inesperado. O catálogo completo de formatos de alto impacto:</p>
+      <div class="mk-fmts">
+        <div class="mk-fmt reveal"><span>01</span><b>Pause Ads</b><p>O conteúdo pausa. Seu anúncio ocupa o player e fecha para voltar ao vídeo.</p><div class="mk-demo"><div class="mini format-pause"><div class="format-video">Ⅱ</div><div class="ad-seditus">Reditus<small>resultados quentinhos.</small></div></div></div></div>
+        <div class="mk-fmt reveal"><span>02</span><b>In-Video Squeezeback</b><p>O vídeo reduz para o canto. Sua campanha abre ao lado sem interromper a cena.</p><div class="mk-demo"><div class="mini format-squeeze"><div class="format-video"><svg class="ico icof" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 2l7 4-7 4z"/></svg></div><div class="ad-motor"><b>Reditus</b></div></div></div></div>
+        <div class="mk-fmt reveal"><span>03</span><b>In-Video Spark</b><p>Um convite da sua marca entra sobre o vídeo, cresce e sinaliza a interação.</p><div class="mk-demo"><div class="mini format-spark"><div class="format-video"><svg class="ico icof" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 2l7 4-7 4z"/></svg></div><div class="ad-lanche"><b>R</b><small>reditus</small></div></div></div></div>
+        <div class="mk-fmt reveal"><span>04</span><b>Velocity</b><p>Antes do conteúdo, sua campanha abre em tela cheia e depois libera a leitura.</p><div class="mk-demo"><div class="mini format-velocity"><div class="ad-refresco"><b>Reditus</b><small>o sabor da visibilidade.</small></div></div></div></div>
+        <div class="mk-fmt reveal"><span>05</span><b>Desktop Skin</b><p>O ambiente do site ganha laterais da sua marca com o conteúdo no centro.</p><div class="mk-demo"><div class="mini format-skin"><div class="skin-sport">Reditus</div><div class="skin-page"></div></div></div></div>
+        <div class="mk-fmt reveal"><span>06</span><b>Mobile Skin</b><p>A moldura do conteúdo recebe sua campanha em experiência pensada pra celular.</p><div class="mk-demo"><div class="mini format-mobile"><div class="phone-frame"><b>reditus</b><i></i></div></div></div></div>
+        <div class="mk-fmt reveal"><span>07</span><b>In-Article</b><p>Entre os parágrafos, seu anúncio aparece como pausa visual dentro da leitura.</p><div class="mk-demo"><div class="mini format-article"><div class="article-lines"></div><div class="article-ad">Reditus</div></div></div></div>
+        <div class="mk-fmt reveal"><span>08</span><b>Hang Time</b><p>A unidade da sua marca acompanha a rolagem e permanece visível no tempo certo.</p><div class="mk-demo"><div class="mini format-hang"><div class="hang-page"></div><div class="hang-ad">Reditus</div></div></div></div>
+        <div class="mk-fmt reveal"><span>09</span><b>In-Screen</b><p>Peça curta entre conteúdos cria impacto em tela inteira para sua campanha.</p><div class="mk-demo"><div class="mini format-inscreen"><b>R</b><small>reditus</small></div></div></div>
+        <div class="mk-fmt reveal"><span>10</span><b>Outstream</b><p>O vídeo da marca entra no fluxo da página e se recolhe quando o usuário segue.</p><div class="mk-demo"><div class="mini format-outstream"><div class="out-page"></div><div class="out-ad"><b>Reditus</b><i><svg class="ico icof" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 2l7 4-7 4z"/></svg></i></div></div></div></div>
+      </div>
+      <p class="micro-list reveal" style="margin-top:26px;">FORMATOS CRIATIVOS PARA DISPLAY, VÍDEO, ÁUDIO E AMBIENTE DIGITAL — VEJA AS SIMULAÇÕES <a href="/#catalogo" style="color:var(--acid)">NO SITE</a></p>
+    </section>
+
+    <!-- ÁUDIO -->
+    <section class="mk-sec">
+      <p class="kicker reveal" style="color:var(--violet)">FORMATO 02 <span>·</span> ATENÇÃO EXCLUSIVA</p>
+      <h2 class="reveal">Áudio<em style="color:var(--violet)">.</em></h2>
+      <p class="mk-lead reveal">Presença em momentos de escuta, sem concorrência visual.</p>
+      <div class="mk-cols">
+        <div class="reveal">
+          <p class="mk-colhead" style="color:var(--violet)">ONDE SUA MARCA TOCA</p>
+          <div class="mk-item"><h3>Spotify <em style="color:var(--violet)">playlist, humor e contexto de escuta</em></h3></div>
+          <div class="mk-item"><h3>Deezer <em style="color:var(--violet)">cobertura em streaming musical</em></h3></div>
+          <div class="mk-item"><h3>Podcasts <em style="color:var(--violet)">conteúdo de alta afinidade</em></h3></div>
+          <div class="mk-item"><h3>Rádio digital <em style="color:var(--violet)">streaming ao vivo</em></h3></div>
+        </div>
+        <div class="reveal">
+          <p class="mk-colhead" style="color:var(--violet)">COMO FUNCIONA</p>
+          <div class="mk-item"><h3>Entrega</h3><p>Inserção dinâmica de áudio (DAI), com criativo adaptado ao contexto do ouvinte.</p></div>
+          <div class="mk-item"><h3>Segmentação</h3><p>Critérios contextuais e comportamentais, não apenas dados demográficos.</p></div>
+          <div class="mk-item"><h3>Mensuração</h3><p>Listen-through rate e completions — o anúncio foi realmente ouvido até o fim.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOOH -->
+    <section class="mk-sec">
+      <p class="kicker reveal" style="color:var(--pink)">FORMATO 03 <span>·</span> AS MAIORES TELAS DO BRASIL</p>
+      <h2 class="reveal">DOOH<em style="color:var(--pink)">.</em></h2>
+      <p class="mk-lead reveal">Sua campanha no fluxo das cidades.</p>
+      <div class="mk-cols">
+        <div class="reveal">
+          <p class="mk-colhead" style="color:var(--pink)">ONDE SUA MARCA APARECE</p>
+          <div class="mk-item"><h3>Metrô <em style="color:var(--pink)">grande fluxo, alta frequência</em></h3></div>
+          <div class="mk-item"><h3>Shopping <em style="color:var(--pink)">ambiente de consumo, decisão próxima</em></h3></div>
+          <div class="mk-item"><h3>Aeroporto <em style="color:var(--pink)">público qualificado</em></h3></div>
+          <div class="mk-item"><h3>Uber <em style="color:var(--pink)">tela no momento certo do trajeto</em></h3></div>
+        </div>
+        <div class="reveal">
+          <p class="mk-colhead" style="color:var(--pink)">COMO FUNCIONA</p>
+          <div class="mk-item"><h3>Compra</h3><p>Programática (pDOOH) via SSPs especializados em digital signage.</p></div>
+          <div class="mk-item"><h3>Segmentação</h3><p>Por geolocalização, horário e condições em tempo real (ex: clima).</p></div>
+          <div class="mk-item"><h3>Verificação</h3><p>Proof-of-play — comprovação de que o anúncio foi exibido, onde e quando.</p></div>
+        </div>
+      </div>
+      <div class="mk-stats reveal">
+        <div class="mk-stat"><b style="color:var(--pink)" data-count="60" data-suffix="K+">0</b><span>FACES DIGITAIS</span></div>
+        <div class="mk-stat"><b style="color:var(--pink)" data-count="15" data-suffix="+">0</b><span>CAPITAIS E GRANDES CIDADES</span></div>
+        <div class="mk-stat"><b style="color:var(--pink)" data-count="100" data-suffix="%">0</b><span>COMPRA PROGRAMÁTICA</span></div>
+      </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section class="mk-sec">
+      <p class="kicker reveal">NÃO VENDEMOS CLIQUE</p>
+      <h2 class="reveal">vendemos <em style="color:var(--violet)">retorno.</em></h2>
+      <p class="mk-lead reveal">Cada campanha roda sobre uma stack de mensuração ponta a ponta — do plano de mídia ao relatório final.</p>
+      <div class="mk-cols" style="margin-top:20px;">
+        <div class="reveal">
+          <div class="mk-item"><h3>Viewability <em style="color:var(--violet)">padrão MRC/IAB</em></h3><p>Só conta como exibido o que realmente esteve visível na tela.</p></div>
+          <div class="mk-item"><h3><em style="color:var(--acid)">Brand lift</em> studies</h3><p>Lembrança e intenção de marca, antes e depois da campanha.</p></div>
+          <div class="mk-item"><h3>Atribuição <em style="color:var(--pink)">multi-touch</em></h3><p>O papel de cada formato na jornada — Rich Media, áudio e DOOH.</p></div>
+        </div>
+        <div class="reveal">
+          <div class="mk-item"><h3>Dashboards <em style="color:var(--violet)">em tempo real</em></h3><p>Acompanhamento contínuo, não um relatório fechado no fim do mês.</p></div>
+          <div class="mk-item"><h3>Integração <em style="color:var(--acid)">de dados</em></h3><p>Conexão com pixel e analytics do cliente para leitura real.</p></div>
+          <div class="mk-item"><h3>Verificação <em style="color:var(--pink)">independente</em></h3><p>Métricas auditáveis por ferramentas de terceiros do mercado.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO TRABALHAMOS (mais infos) -->
+    <section class="mk-sec">
+      <p class="kicker reveal">DO BRIEFING AO RELATÓRIO</p>
+      <h2 class="reveal">como <em style="color:var(--acid)">trabalhamos.</em></h2>
+      <div class="mk-steps">
+        <div class="mk-step reveal"><i>PASSO 01</i><b>Briefing</b><p>Objetivo de negócio, público e momento da marca — o retorno esperado define o plano.</p></div>
+        <div class="mk-step reveal"><i>PASSO 02</i><b>Plano de mídia</b><p>Frentes e formatos certos pro objetivo, com simulação de alcance e frequência.</p></div>
+        <div class="mk-step reveal"><i>PASSO 03</i><b>Veiculação</b><p>Compra programática, criativos adaptados por contexto e otimização contínua.</p></div>
+        <div class="mk-step reveal"><i>PASSO 04</i><b>Leitura</b><p>Dashboard em tempo real e relatório final com número e interpretação.</p></div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="mk-manif">
+      <div class="mk-wrap" style="padding:0;">
+        <p class="kicker reveal">RETORNO, EM LATIM</p>
+        <h2 class="reveal">A gente não vende clique.<br><em>Vende retorno.</em></h2>
+        <div class="mf-cols reveal" style="max-width:940px;">
+          <p>Reditus vem do latim <em>redire</em> — voltar, retornar. No léxico romano, também nomeava o rendimento de um investimento. Não foi coincidência — foi escolha.</p>
+          <p>Nada de banner tradicional, genérico, ignorado. Rich Media interativo, áudio em streaming e DOOH nas maiores telas do Brasil — cada formato pensado pra ser notado, não pra passar batido.</p>
+          <p>Em um mercado lotado de formato genérico e métrica vaidosa, a Reditus nasce pra provar que anúncio de alto impacto também se mede, se otimiza e se justifica — com número e interpretação.</p>
+          <p>Não construímos tecnologia por construir. Usamos a melhor tecnologia disponível, ao lado dos parceiros certos, pra colocar sua marca na frente de quem importa — do jeito que gera resultado, não só alcance.</p>
+        </div>
+        <p class="mf-close reveal" style="border-color:rgba(16,16,16,.35);">Reditus é o retorno que a mídia sempre devia ter dado.</p>
+        <p class="mf-sign reveal">— REDITUS MÍDIA, 2026</p>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="mk-cta">
+      <span class="reveal" style="display:inline-block;"><svg style="width:74px;color:var(--paper)" class="eye-anim" viewBox="0 0 1053.035908 639.451227" aria-hidden="true"><g class="blinker"><g transform="translate(-37.215166,671.627944) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"><path d="M7110 6710 c-714 -43 -1498 -173 -2180 -362 -575 -159 -1279 -427
+-1566 -595 -27 -16 -80 -42 -119 -57 -38 -15 -110 -50 -159 -78 -48 -28 -119
+-66 -157 -84 -105 -51 -399 -230 -575 -350 -1002 -681 -1657 -1475 -1908
+-2314 -415 -1386 956 -2507 3114 -2547 3271 -60 6608 1690 7264 3810 201 649
+9 1323 -496 1743 -575 477 -1183 709 -2158 820 -159 19 -833 27 -1060 14z
+m705 -809 c55 -5 152 -14 215 -20 63 -5 174 -23 245 -39 72 -17 174 -37 228
+-46 54 -9 132 -27 175 -40 42 -13 110 -34 151 -46 41 -12 118 -43 170 -69 53
+-27 127 -58 165 -71 37 -12 97 -42 132 -66 35 -24 90 -57 122 -73 156 -79 361
+-258 454 -397 304 -455 272 -835 -123 -1469 -72 -115 -95 -146 -244 -314 -49
+-57 -115 -134 -145 -171 -30 -38 -80 -88 -110 -112 -30 -23 -102 -87 -160
+-141 -111 -105 -491 -395 -594 -455 -171 -99 -307 -180 -358 -214 -99 -66
+-586 -301 -666 -322 -40 -10 -126 -44 -191 -76 -65 -32 -153 -68 -197 -80 -43
+-12 -99 -30 -123 -41 -24 -10 -72 -26 -105 -35 -34 -8 -95 -28 -136 -44 -140
+-54 -438 -136 -715 -196 -60 -14 -157 -36 -215 -49 -58 -14 -146 -30 -197 -36
+-50 -5 -122 -19 -160 -30 -37 -11 -122 -24 -188 -30 -65 -5 -138 -14 -162 -19
+-23 -6 -102 -14 -175 -20 -73 -5 -158 -14 -188 -20 -183 -33 -959 -47 -1235
+-22 -77 7 -187 17 -245 22 -58 5 -175 25 -260 44 -85 19 -180 37 -210 41 -102
+14 -387 103 -488 154 -53 26 -128 58 -166 71 -37 12 -97 42 -132 66 -35 24
+-90 57 -122 73 -358 181 -637 580 -658 945 -20 321 207 823 545 1206 75 85
+157 181 181 212 24 31 67 74 94 95 28 21 97 82 153 135 122 116 534 427 659
+496 49 27 152 89 229 137 178 112 648 346 730 364 33 7 125 43 205 81 80 37
+170 73 200 80 30 7 84 25 120 40 36 14 88 32 115 39 28 6 84 25 125 40 146 56
+439 137 715 197 61 14 157 36 215 49 58 14 145 30 193 35 48 6 131 22 184 35
+52 14 121 25 152 25 31 0 112 9 181 20 69 11 150 20 180 20 30 0 114 9 185 20
+72 11 171 20 220 21 50 1 117 5 150 9 82 11 756 4 880 -9z"/><g class="pupila"><path d="M5810 4474 c-1000 -151 -1628 -1399 -936 -1862 739 -494 1993 484
+1765 1376 -82 323 -455 542 -829 486z"/></g></g></g></svg></span>
+      <h2 class="reveal">vamos colocar<br>sua marca <em>em cena.</em></h2>
+      <p class="mk-lead reveal" style="margin:22px auto 0; text-align:center;">Fale com a gente pra ver o formato certo pro seu objetivo.</p>
+      <div class="reveal"><a class="mk-pill" href="mailto:contato@reditusmidia.com.br">contato@reditusmidia.com.br</a></div>
+    </section>
+
+    <footer class="mk-foot">
+      <span>© 2026 REDITUS MÍDIA</span>
+      <a href="/">reditusmidia.com.br</a>
+      <a href="https://www.instagram.com/reditusmidia/" target="_blank" rel="noopener">instagram <svg class="ico" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="1.5" width="9" height="9" rx="2.6"/><circle cx="6" cy="6" r="2.2"/><circle cx="8.9" cy="3.1" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+      <span>SALVADOR · BAHIA · BRASIL · 12°58'29"S | 38°28'36"W</span>
+    </footer>
+  </main>
+
+  <script>
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: .14 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    // contadores animados
+    const countObs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting || e.target.dataset.done) return;
+        e.target.dataset.done = '1';
+        const target = Number(e.target.dataset.count);
+        const suffix = e.target.dataset.suffix || '';
+        const t0 = performance.now();
+        const tick = (t) => {
+          const p = Math.min(1, (t - t0) / 1400);
+          const eased = 1 - Math.pow(1 - p, 3);
+          e.target.textContent = Math.round(target * eased) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: .5 });
+    document.querySelectorAll('[data-count]').forEach((el) => countObs.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (ev) => {
+        const t = document.querySelector(link.getAttribute('href'));
+        if (t) { ev.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>
