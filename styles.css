@@ -494,7 +494,7 @@ footer span:last-child{display:none}
 @keyframes pause-reveal{0%,30%{transform:translateY(102%)}48%,78%{transform:none}100%{transform:translateY(-102%)}}
 @keyframes pause-content{0%,30%{opacity:1}48%,78%{opacity:.1}100%{opacity:1}}
 @keyframes levis-tab{50%{transform:translateY(-7px) scale(1.03)}}
-@keyframes skin-shift{50%{background-position:24px 0!important}}
+@keyframes skin-shift{50%{background-position:24px 0}}
 @keyframes metric-flicker{50%{filter:blur(1.2px);transform:translateX(2px);color:var(--acid)}}
 @keyframes graph-jitter{50%{transform:translateY(-7px) scaleY(.91)}}
 @media(max-width:900px){.campaign-board{grid-template-columns:1fr!important}

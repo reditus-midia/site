@@ -12,7 +12,7 @@
   },
   "linter": {
     "enabled": true,
-    "rules": { "recommended": true }
+            "rules": { "recommended": true, "complexity": { "noForEach": "off", "useArrowFunction": "off" }, "style": { "useSingleVarDeclarator": "off", "useExponentiationOperator": "off" }, "suspicious": { "noShorthandPropertyOverrides": "off" } }
   },
   "javascript": {
     "formatter": { "quoteStyle": "single", "semicolons": "always" }
