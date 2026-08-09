@@ -854,3 +854,28 @@ main section{content-visibility:auto;contain-intrinsic-size:auto 1400px}
 main section.hero{content-visibility:visible;contain-intrinsic-size:none}
 main .scene{contain-intrinsic-size:auto 220vh}
 }
+
+
+/* ══════════ acessibilidade: prefers-reduced-motion ══════════ */
+@media (prefers-reduced-motion: reduce) {
+     :root *,
+     :root *::before,
+     :root *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+     }
+}
+
+/* ══════════ feedback de interação: nav e CTAs ══════════ */
+.topbar nav a,
+.small-cta,
+.text-link {
+     transition: opacity 0.18s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.topbar nav a:hover,
+.small-cta:hover,
+.text-link:hover {
+     opacity: 0.62;
+}
