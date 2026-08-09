@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Auditoria de Motion &amp; UX — Reditus Mídia (site institucional)</title>
+<style>
+  :root{
+    --ink:#0a0a0c;--paper:#efede6;--acid:#d6ff28;--violet:#8e72ff;--pink:#ff4d7d;
+    --line:rgba(10,10,12,.14);--mono:"DM Mono","SFMono-Regular",Consolas,monospace;
+    --display:"Bricolage Grotesque",sans-serif;--sans:"Instrument Sans",sans-serif;
+    --bg:var(--paper);--fg:var(--ink);--card:#fff;--muted:rgba(10,10,12,.62);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#111114;--fg:var(--paper);--card:#1a1a1f;--line:rgba(239,237,230,.14);--muted:rgba(239,237,230,.62)}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  header.top{padding:56px 6vw 40px;border-bottom:1px solid var(--line)}
+  .eyebrow{font:600 .68rem var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin:0 0 14px}
+  h1{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:clamp(1.8rem,4vw,2.7rem);margin:0 0 14px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px 26px;font:500 .78rem var(--mono);color:var(--muted)}
+  .meta b{color:var(--fg);font-weight:600}
+  main{padding:44px 6vw 90px;max-width:1080px;margin:0 auto}
+  section.block{margin-bottom:64px}
+  h2{font-family:var(--display);font-size:1.3rem;letter-spacing:-.01em;margin:0 0 6px}
+  .block-sub{color:var(--muted);font-size:.88rem;margin:0 0 26px;max-width:64ch}
+  .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:28px 0 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px}
+  .stat b{display:block;font-family:var(--display);font-size:1.9rem;line-height:1}
+  .stat span{display:block;margin-top:6px;font:600 .64rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .stat.crit b{color:var(--pink)}
+  .stat.imp b{color:var(--violet)}
+  .stat.opp b{color:var(--muted)}
+
+  .lens-row{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0}
+  .lens-chip{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 16px 8px 10px;font:600 .72rem var(--mono)}
+  .lens-dot{width:9px;height:9px;border-radius:50%}
+  .lens-chip .role{color:var(--muted);font-weight:500;margin-left:2px}
+
+  .finding{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 26px 24px;margin-bottom:22px}
+  .finding-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .badge{display:inline-flex;align-items:center;gap:6px;font:700 .62rem var(--mono);text-transform:uppercase;letter-spacing:.09em;padding:5px 11px;border-radius:999px;white-space:nowrap}
+  .badge.critical{background:rgba(255,77,125,.14);color:var(--pink)}
+  .badge.important{background:rgba(142,114,255,.16);color:var(--violet)}
+  .badge.opportunity{background:rgba(10,10,12,.08);color:var(--muted)}
+  .badge.credit{background:rgba(214,255,40,.28);color:#5b6b00}
+  @media (prefers-color-scheme: dark){ .badge.credit{color:#d6ff28} }
+  .finding h3{font-family:var(--display);font-size:1.1rem;margin:12px 0 6px;letter-spacing:-.01em}
+  .finding p{margin:0 0 10px;font-size:.92rem;color:var(--fg)}
+  .finding .why{color:var(--muted);font-size:.86rem}
+  .lens-tag{font:600 .64rem var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+  code, .path{font-family:var(--mono);font-size:.82em;background:rgba(10,10,12,.06);padding:1px 6px;border-radius:5px}
+  @media (prefers-color-scheme: dark){ code, .path{background:rgba(239,237,230,.1)} }
+
+  .demo-wrap{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:620px){ .demo-wrap{grid-template-columns:1fr} }
+  .demo-card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--ink);color:var(--paper);position:relative}
+  .demo-card__label{position:absolute;top:10px;left:12px;font:700 .6rem var(--mono);text-transform:uppercase;letter-spacing:.09em;z-index:2;opacity:.65}
+  .demo-card__stage{height:160px;display:flex;align-items:center;justify-content:center;position:relative}
+  .demo-card__cap{padding:10px 14px;font:500 .7rem var(--mono);border-top:1px solid rgba(239,237,230,.14);color:rgba(239,237,230,.7)}
+
+  /* ---- demo 1: reduced-motion coverage (before/after) ---- */
+  .motion-1-dot{width:16px;height:16px;border-radius:50%;background:var(--acid)}
+  .motion-1-before .motion-1-dot{animation:motion-1-spin 3s linear infinite}
+  @keyframes motion-1-spin{to{transform:rotate(360deg) translateX(28px) rotate(-360deg)}}
+  .motion-1-after .motion-1-dot{background:var(--acid)}
+  .motion-1-after .motion-1-ring{position:absolute;width:60px;height:60px;border:1px dashed rgba(239,237,230,.3);border-radius:50%}
+  .motion-1-after .motion-1-orbit{animation:motion-1-spin 3s linear infinite}
+  @media (prefers-reduced-motion: reduce){ .motion-1-before .motion-1-dot{animation:none} }
+
+  /* ---- demo 2: hover feedback ---- */
+  .motion-2-link{font:600 .72rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--paper);text-decoration:none;border-bottom:1px solid var(--paper);padding-bottom:6px}
+  .motion-2-after .motion-2-link{transition:opacity .18s cubic-bezier(.33,1,.68,1)}
+  .demo-card__stage[data-auto="hover"] .motion-2-after .motion-2-link{animation:motion-2-pulse 3s ease-in-out infinite}
+  @keyframes motion-2-pulse{0%,20%{opacity:1}45%,55%{opacity:.62}80%,100%{opacity:1}}
+
+  /* ---- demo 3: accordion exit gap ---- */
+  .motion-3-row{width:82%;background:rgba(239,237,230,.06);border-radius:8px;padding:12px 14px;font:500 .68rem var(--mono)}
+  .motion-3-body{overflow:hidden;font-size:.66rem;color:rgba(239,237,230,.7);margin-top:0}
+  .motion-3-before .motion-3-body{animation:motion-3-snap 3s steps(1) infinite}
+  @keyframes motion-3-snap{0%{max-height:0;opacity:0}8%{max-height:60px;opacity:1;padding-top:8px}55%{max-height:60px;opacity:1;padding-top:8px}56%{max-height:0;opacity:0;padding-top:0}100%{max-height:0;opacity:0}}
+  .motion-3-after .motion-3-body{transition:max-height .38s cubic-bezier(.4,0,.2,1),opacity .28s ease,padding-top .38s ease}
+  .demo-card__stage[data-auto="accordion"] .motion-3-after .motion-3-body{animation:motion-3-smooth 3s ease-in-out infinite}
+  @keyframes motion-3-smooth{0%{max-height:0;opacity:0;padding-top:0}8%,50%{max-height:60px;opacity:1;padding-top:8px}92%,100%{max-height:0;opacity:0;padding-top:0}}
+  @media (prefers-reduced-motion: reduce){
+    .motion-2-after .motion-2-link, .demo-card__stage [class*="motion-"]{animation:none !important}
+  }
+
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
+  .verdict ul{margin:14px 0 0;padding-left:20px}
+  .verdict li{margin-bottom:8px;font-size:.9rem}
+  footer.end{padding:36px 6vw 60px;color:var(--muted);font:500 .76rem var(--mono);border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <p class="eyebrow">Auditoria de motion &amp; loading UX · skill design-motion-principles</p>
+  <h1>Reditus Mídia — site institucional</h1>
+  <div class="meta">
+    <span><b>Escopo:</b> index.html, midia-kit-page/, styles.css, script.js</span>
+    <span><b>Data:</b> 2026-08-09</span>
+    <span><b>Issue:</b> #3</span>
+    <span><b>Lente:</b> marketing/institucional, produção &amp; polish</span>
+  </div>
+  <div class="summary-grid">
+    <div class="stat crit"><b>1</b><span>Crítico</span></div>
+    <div class="stat imp"><b>2</b><span>Importante</span></div>
+    <div class="stat opp"><b>1</b><span>Oportunidade</span></div>
+    <div class="stat"><b>1</b><span>Boa prática existente</span></div>
+  </div>
+  <div class="lens-row">
+    <span class="lens-chip"><span class="lens-dot" style="background:var(--violet)"></span>Jakub Krehel <span class="role">— primária, production polish</span></span>
+    <span class="lens-chip"><span class="lens-dot" style="background:var(--acid)"></span>Emil Kowalski <span class="role">— secundária, restraint/acessibilidade</span></span>
+    <span class="lens-chip"><span class="lens-dot" style="background:var(--pink)"></span>Jhey Tompkins <span class="role">— seletiva, nav/forms</span></span>
+  </div>
+</header>
+
+<main>
+
+  <section class="block">
+    <h2>Contexto</h2>
+    <p class="block-sub">
+      Site estático institucional, sem framework, ~50 animações CSS via <code>@keyframes</code> (muitas em loop <code>infinite</code>),
+      um pouco de JS de scroll-reveal, parallax, contador numérico e um carrossel mobile. A lente de peso primário é
+      <b>Jakub Krehel</b> (polish de produção, sutileza) porque o site é institucional/marketing — não é um produto com
+      interações frequentes que pedem a lente de restrição extrema do Emil, mas os princípios de acessibilidade e
+      duração dele foram aplicados como camada secundária. A lente do Jhey Tompkins entra apenas onde há navegação
+      e possíveis formulários — o site não tem <code>&lt;form&gt;</code> em nenhuma página, então essa lente teve peso mínimo,
+      restrita aos links de navegação/CTA.
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>Achados</h2>
+    <p class="block-sub">Ordenados por severidade. Cards de demonstração (antes/depois) apenas para Crítico e Importante, conforme o formato da skill.</p>
+
+    <!-- FINDING 1 — CRITICAL -->
+    <div class="finding">
+      <div class="finding-head">
+        <span class="badge critical">Crítico</span>
+        <span class="lens-tag">Lente: Emil Kowalski — acessibilidade</span>
+      </div>
+      <h3>Nenhuma cobertura de <code>prefers-reduced-motion</code> no CSS</h3>
+      <p>
+        O <code>script.js</code> já respeita <code>prefers-reduced-motion</code> para o parallax e o carrossel mobile
+        (via <code>matchMedia</code>), mas não existe nenhum bloco equivalente em <code>styles.css</code>. Isso deixa
+        dezenas de animações <code>infinite</code> (glow do hero, equalizadores dos cards de formato, skins animados,
+        <code>.demo-eq i</code> no mídia kit, entre outras) rodando sem parar para quem desativou movimento no
+        sistema — inclusive as decorativas, que não carregam informação nenhuma.
+      </p>
+      <p class="why">Por que importa: para quem tem sensibilidade vestibular, isso não é um detalhe — é a diferença entre
+      conseguir navegar a página ou não. É também o único item desta auditoria que é bloqueante por padrão do checklist.</p>
+      <div class="demo-wrap">
+        <div class="demo-card motion-1-before">
+          <span class="demo-card__label">Antes</span>
+          <div class="demo-card__stage"><div class="motion-1-dot"></div></div>
+          <div class="demo-card__cap">reduced-motion: ignorado</div>
+        </div>
+        <div class="demo-card motion-1-after">
+          <span class="demo-card__label">Depois</span>
+          <div class="demo-card__stage" data-auto="orbit"><div class="motion-1-ring"></div><div class="motion-1-dot motion-1-orbit"></div></div>
+          <div class="demo-card__cap">com reduced-motion: para instantaneamente</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINDING 2 — IMPORTANT -->
+    <div class="finding">
+      <div class="finding-head">
+        <span class="badge important">Importante</span>
+        <span class="lens-tag">Lente: Jhey Tompkins — feedback de interação</span>
+      </div>
+      <h3>Sem feedback de hover nos links de navegação e CTAs de texto</h3>
+      <p>
+        <code>.topbar nav a</code>, <code>.small-cta</code> e <code>.text-link</code> — os principais elementos de
+        navegação e chamada-para-ação do site — não têm nenhuma transição em <code>:hover</code>. Todo o resto do
+        levantamento de <code>:hover</code> no arquivo (só 4 ocorrências no total) fica restrito a linhas de formato
+        e à pausa de animações no laptop demo.
+      </p>
+      <p class="why">Por que importa: sem feedback, o usuário não tem confirmação de que o elemento é clicável antes
+      do clique — pequeno atrito, mas em elementos de conversão (CTA) é exatamente onde esse atrito custa mais caro.</p>
+      <div class="demo-wrap">
+        <div class="demo-card motion-2-before">
+          <span class="demo-card__label">Antes</span>
+          <div class="demo-card__stage"><a class="motion-2-link" href="#">formatos</a></div>
+          <div class="demo-card__cap">hover: nenhuma resposta</div>
+        </div>
+        <div class="demo-card motion-2-after">
+          <span class="demo-card__label">Depois</span>
+          <div class="demo-card__stage" data-auto="hover"><a class="motion-2-link" href="#">formatos</a></div>
+          <div class="demo-card__cap">opacity .62, 180ms, cubic-bezier(.33,1,.68,1)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINDING 3 — IMPORTANT (documented, not fixed in this pass) -->
+    <div class="finding">
+      <div class="finding-head">
+        <span class="badge important">Importante · documentado, não corrigido nesta rodada</span>
+        <span class="lens-tag">Lente: Jakub Krehel — exits mais sutis que entries</span>
+      </div>
+      <h3>Acordeão de formatos (mobile) não tem animação de saída</h3>
+      <p>
+        Ao abrir uma linha de <code>.format-row</code> no mobile, o conteúdo entra com <code>fmt-in</code> e
+        <code>mini-pop</code>. Ao fechar, a regra base <code>.format-row p{display:none}</code> volta a valer
+        instantaneamente — sem transição, um corte seco em vez de uma saída simétrica à entrada.
+      </p>
+      <p class="why">Por que fica de fora desta rodada: corrigir direito exige coordenar JS (para trocar
+      <code>display:none</code> por uma técnica de altura animável — <code>grid-template-rows</code> ou
+      <code>max-height</code> — sem quebrar o layout responsivo já existente) e não é um ajuste puramente aditivo
+      de CSS como os dois itens acima. Abrindo issue de acompanhamento em vez de arriscar essa mudança no mesmo PR.</p>
+    </div>
+
+    <!-- FINDING 4 — OPPORTUNITY -->
+    <div class="finding">
+      <div class="finding-head">
+        <span class="badge opportunity">Oportunidade</span>
+        <span class="lens-tag">Lente: Emil Kowalski — evitar scale(0)</span>
+      </div>
+      <h3><code>spark-pop</code> começa de <code>scale(0)</code></h3>
+      <p>
+        <code>@keyframes spark-pop</code> vai de <code>scale(0)</code> a <code>scale(1)</code> e volta — um anti-padrão
+        catalogado (recomenda-se iniciar de ~0.9 em vez de 0). Neste caso específico, porém, o efeito é um "brilho"
+        pontual (formato de anúncio "spark"), então o <code>scale(0)</code> pode ser leitura intencional do próprio
+        conceito visual, não um descuido.
+      </p>
+      <p class="why">Recomendação: manter como está. Registrado apenas para visibilidade, sem ação neste PR.</p>
+    </div>
+
+    <!-- FINDING 5 — GOOD PRACTICE -->
+    <div class="finding">
+      <div class="finding-head">
+        <span class="badge credit">Boa prática já existente</span>
+        <span class="lens-tag">Lente: Jakub Krehel — hover pausa decorativo</span>
+      </div>
+      <h3><code>.laptop-screen:hover</code> já pausa animações decorativas</h3>
+      <p>
+        <code>.laptop-screen:hover .engaje-ad</code> e <code>.squeeze-video</code> usam
+        <code>animation-play-state: paused</code> ao passar o mouse — um padrão correto que evita chamar atenção
+        para o elemento errado no momento em que o usuário está com foco ali. Vale replicar esse padrão em outros
+        loops decorativos no futuro, se fizer sentido.
+      </p>
+    </div>
+
+  </section>
+
+  <section class="block">
+    <h2>Fora do escopo desta auditoria</h2>
+    <p class="block-sub">
+      A navegação mobile (<code>.topbar nav{display:none}</code> abaixo de 760px) não tem nenhum toggle tipo
+      hambúrguer equivalente — ou seja, não existe elemento de navegação mobile para animar. Isso não é uma lacuna
+      de <em>motion</em>, é uma lacuna de arquitetura de informação, então fica fora desta auditoria e é levada como
+      nota para a revisão de design sênior (Issue #4).
+    </p>
+  </section>
+
+  <section class="block verdict">
+    <h2>Veredito e próximos passos</h2>
+    <p>
+      Dos quatro achados de motion, dois são aditivos e seguros o suficiente para entrar num único PR direto
+      (cobertura de <code>prefers-reduced-motion</code> e feedback de hover em nav/CTA) — nenhum dos dois altera
+      comportamento existente, só adiciona o que faltava. Os outros dois ficam documentados como próximos passos:
+    </p>
+    <ul>
+      <li><b>Corrigido neste PR:</b> bloco global de <code>prefers-reduced-motion</code> em <code>styles.css</code>.</li>
+      <li><b>Corrigido neste PR:</b> transição de hover em <code>.topbar nav a</code>, <code>.small-cta</code>, <code>.text-link</code>.</li>
+      <li><b>Issue de acompanhamento (Melhoria):</b> animação de saída do acordeão <code>.format-row</code> no mobile.</li>
+      <li><b>Sem ação:</b> <code>spark-pop</code> com <code>scale(0)</code> — mantido por ser intencional ao conceito visual.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="end">
+  Gerado a partir da skill design-motion-principles (kylezantos) · Reditus Mídia · Issue #3
+</footer>
+
+</body>
+</html>
