@@ -19,7 +19,7 @@ test.describe('Smoke — páginas principais carregam', () => {
       if (msg.type() === 'error') consoleErrors.push(msg.text());
     });
 
-    const response = await page.goto('/midia-kit-page/');
+    const response = await page.goto('/midia-kit/');
     expect(response?.ok()).toBeTruthy();
     await expect(page).toHaveTitle(/Mídia Kit/i);
     expect(consoleErrors).toEqual([]);
