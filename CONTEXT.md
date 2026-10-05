@@ -4,7 +4,7 @@
 
 ## 1. Sobre o projeto
 
-Site institucional estático da Reditus Mídia (`index.html`, `styles.css`, `script.js`, `midia-kit-page/`), publicado via Vercel. Sem backend, sem banco de dados, sem autenticação de usuário.
+Site institucional estático da Reditus Mídia (`index.html`, `styles.css`, `script.js`, `midia-kit/`), publicado via Vercel. Sem backend, sem banco de dados, sem autenticação de usuário.
 
 ## 2. Fluxo de trabalho: Issues e Pull Requests
 

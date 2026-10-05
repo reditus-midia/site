@@ -3,7 +3,7 @@
 Site estático institucional da Reditus Mídia.
 
 - `index.html` / `styles.css` / `script.js` — site principal.
-- `midia-kit-page/` — página do mídia kit.
+- `midia-kit/` — página do mídia kit: apresentação comercial de 10 telas (React empacotado em JS estático). Código-fonte em `midia-kit/src/`; `app.js` e `app.css` são gerados.
 - Deploy: Vercel (projeto `graalhub/reditus-midia`).
 
 ## Padrão de trabalho
@@ -15,6 +15,17 @@ Antes de implementar qualquer mudança, leia **[CONTEXT.md](./CONTEXT.md)** — 
 ```bash
 npx serve .
 ```
+
+## Mídia kit (apresentação)
+
+Ao alterar qualquer arquivo de `midia-kit/src/`, regenerar o bundle e commitar `midia-kit/app.js` e `midia-kit/app.css`:
+
+```bash
+npm install
+npm run build:midia-kit
+```
+
+Parâmetros: `?slide=N` abre a tela N; `?slide=N&capture=1` mostra só a tela, sem controles.
 
 ## Checks locais
 

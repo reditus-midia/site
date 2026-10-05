@@ -7,13 +7,17 @@
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "test:e2e": "playwright test",
-    "serve": "npx serve . -p 4173"
+    "serve": "npx serve . -p 4173",
+    "build:midia-kit": "esbuild midia-kit/src/main.tsx --bundle --minify --format=iife --target=es2020 --jsx=automatic --loader:.css=css --define:process.env.NODE_ENV=\\\"production\\\" --outdir=midia-kit --entry-names=app"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@playwright/test": "^1.48.0",
+    "esbuild": "^0.25.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "serve": "^14.2.3"
   }
 }
