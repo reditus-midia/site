@@ -2,7 +2,7 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
   "files": {
-    "ignore": ["node_modules", "kit/**", "*.min.js"]
+    "ignore": ["node_modules", "kit/**", "*.min.js", "midia-kit/src/**", "midia-kit/app.js", "midia-kit/app.css"]
   },
   "formatter": {
     "enabled": true,
